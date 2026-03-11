@@ -164,7 +164,7 @@ export default function RankingTable() {
             {filtered.map((m, i) => (
               <Fragment key={m.slug}>
                 <tr
-                  className={`border-b border-[var(--border)] hover:bg-[var(--card)] transition-colors cursor-pointer ${i === 0 ? "sticky top-[41px] bg-white z-[5] shadow-[0_1px_0_var(--border)]" : ""}`}
+                  className={`border-b border-[var(--border)] hover:bg-[var(--card)] transition-colors cursor-pointer ${i === 0 ? "sticky top-[45px] bg-white z-[5] shadow-[0_1px_0_var(--border)]" : ""}`}
                   onClick={() => setExpandedSlug(expandedSlug === m.slug ? null : m.slug)}
                 >
                   <td className="px-4 py-3 text-[var(--muted)] text-sm tabular-nums">{globalRankMap.get(m.slug) ?? i + 1}</td>

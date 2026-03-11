@@ -40,7 +40,9 @@ def compute_school_score(
         (score, breakdown) where breakdown has individual factor scores (0-100 each)
     """
     # 1. Debt-to-salary: lower ratio = higher score
-    ratio = avg_debt / max(median_salary_10yr, 1)
+    # If salary data is missing ($0), use conservative national median fallback ($45k)
+    effective_salary = median_salary_10yr if median_salary_10yr > 0 else 45000.0
+    ratio = avg_debt / effective_salary
     debt_salary_norm = max(1.0 - min(ratio / MAX_DEBT_SALARY_RATIO, 1.0), 0.0)
 
     # 2. AI readiness: composite of STEM %, AI program, research tier

@@ -206,7 +206,7 @@ export default function SchoolRankingTable() {
             {filtered.map((s, i) => (
               <Fragment key={s.slug}>
                 <tr
-                  className={`border-b border-[var(--border)] hover:bg-[var(--card)] transition-colors cursor-pointer ${i === 0 ? "sticky top-[41px] bg-white z-[5] shadow-[0_1px_0_var(--border)]" : ""}`}
+                  className={`border-b border-[var(--border)] hover:bg-[var(--card)] transition-colors cursor-pointer ${i === 0 ? "sticky top-[45px] bg-white z-[5] shadow-[0_1px_0_var(--border)]" : ""}`}
                   onClick={() => setExpandedSlug(expandedSlug === s.slug ? null : s.slug)}
                 >
                   <td className="px-4 py-3 text-[var(--muted)] text-sm tabular-nums">{globalRankMap.get(s.slug) ?? i + 1}</td>
@@ -218,7 +218,7 @@ export default function SchoolRankingTable() {
                     <ScoreBadge score={s.school_score} color={s.school_color} size="sm" />
                   </td>
                   <td className="px-4 py-3 font-mono text-sm text-[var(--muted)]">${s.avg_debt.toLocaleString()}</td>
-                  <td className="px-4 py-3 font-mono text-sm text-[var(--muted)]">${s.median_salary_10yr.toLocaleString()}</td>
+                  <td className="px-4 py-3 font-mono text-sm text-[var(--muted)]">{s.median_salary_10yr > 0 ? `$${s.median_salary_10yr.toLocaleString()}` : "N/A"}</td>
                   <td className="px-4 py-3 font-mono text-sm text-[var(--muted)]">{(s.graduation_rate * 100).toFixed(0)}%</td>
                   <td className="px-4 py-3 font-mono text-sm text-[var(--muted)]">{(s.pct_stem * 100).toFixed(0)}%</td>
                   <td className="px-4 py-3 font-mono text-sm text-[var(--muted)]">${s.in_state_tuition.toLocaleString()}</td>
@@ -265,7 +265,7 @@ export default function SchoolRankingTable() {
               </div>
               <div>
                 <div className="text-[var(--muted)]">Salary</div>
-                <div className="font-mono">${(s.median_salary_10yr / 1000).toFixed(0)}k</div>
+                <div className="font-mono">{s.median_salary_10yr > 0 ? `$${(s.median_salary_10yr / 1000).toFixed(0)}k` : "N/A"}</div>
               </div>
               <div>
                 <div className="text-[var(--muted)]">Grad</div>
