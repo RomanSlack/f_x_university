@@ -39,7 +39,7 @@ export default function SchoolsPage() {
             graduates. Higher is better. AGI mode on by default.
           </p>
           <div className="mt-6">
-            <ShareButtons text={`Is your school worth it in ${year}? Top 1,000 US universities ranked for the AI age.`} />
+            <ShareButtons text={`Is your school worth it in ${year}? Every major and US university scored 0-100 on AI risk, debt, and employability.`} />
           </div>
           <SchoolHeroStats />
         </section>

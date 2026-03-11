@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Is your degree worth it?";
+export const alt = "Is your school worth it?";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -61,7 +61,7 @@ export default function Image() {
             letterSpacing: "-0.02em",
           }}
         >
-          Is your degree
+          Is your school
         </div>
         <div
           style={{
@@ -84,7 +84,7 @@ export default function Image() {
             lineHeight: 1.5,
           }}
         >
-          Every major and US university scored 0-100 on AI risk, debt, and employability.
+          1,000 US universities scored 0-100 on debt, AI readiness, network, and employability.
         </div>
       </div>
     ),

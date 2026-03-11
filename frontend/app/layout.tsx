@@ -14,9 +14,16 @@ const geistMono = Geist_Mono({
 
 const year = new Date().getFullYear();
 
+export const metadataBase = new URL(
+  process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000"
+);
+
 export const metadata: Metadata = {
+  metadataBase,
   title: `Is Your Degree Worth It in ${year}?  - Degree Collapse Dashboard`,
-  description: `Every college major scored 0-100 on unemployment, AI automation risk, debt load, and salary. The tool universities don't want you to have. Updated for ${year}.`,
+  description: `Every college major and US university scored 0-100 on AI automation risk, debt, and employability. The tool universities don't want you to have. Updated for ${year}.`,
   keywords: [
     "degree ROI",
     "college major risk",
@@ -33,14 +40,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: `Is Your Degree Worth It in ${year}?`,
-    description: `We scored every major 0-100 on AI risk, unemployment, debt, and salary. Check yours.`,
+    description: `Every major and 1,000 US universities scored 0-100 on AI risk, debt, and employability. Check yours.`,
     type: "website",
     siteName: "Degree Collapse",
   },
   twitter: {
     card: "summary_large_image",
     title: `Is Your Degree Worth It in ${year}?`,
-    description: `We scored every major 0-100 on AI risk, unemployment, debt, and salary.`,
+    description: `Every major and 1,000 US universities scored 0-100 on AI risk, debt, and employability.`,
   },
   robots: {
     index: true,

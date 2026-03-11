@@ -37,7 +37,7 @@ export default function Home() {
               Rank by school instead
               <span className="text-sm">→</span>
             </Link>
-            <ShareButtons text={`Is your degree worth it in ${year}? Every major scored 0-100 on AI risk, debt, and employability.`} />
+            <ShareButtons text={`Is your degree worth it in ${year}? Every major and US university scored 0-100 on AI risk, debt, and employability.`} />
           </div>
           <HeroStats />
         </section>
