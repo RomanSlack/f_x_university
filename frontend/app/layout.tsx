@@ -14,14 +14,8 @@ const geistMono = Geist_Mono({
 
 const year = new Date().getFullYear();
 
-export const metadataBase = new URL(
-  process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : "http://localhost:3000"
-);
-
 export const metadata: Metadata = {
-  metadataBase,
+  metadataBase: new URL("https://fxuniversity.world"),
   title: `Is Your Degree Worth It in ${year}?  - Degree Collapse Dashboard`,
   description: `Every college major and US university scored 0-100 on AI automation risk, debt, and employability. The tool universities don't want you to have. Updated for ${year}.`,
   keywords: [

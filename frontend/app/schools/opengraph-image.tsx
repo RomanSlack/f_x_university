@@ -33,50 +33,59 @@ export default function Image() {
         >
           <div
             style={{
+              display: "flex",
               width: "32px",
               height: "32px",
               borderRadius: "50%",
               border: "2.5px solid #111",
             }}
           />
-          <span
+          <div
             style={{
+              display: "flex",
               fontSize: "16px",
               fontWeight: 500,
               color: "#999",
               letterSpacing: "0.15em",
-              textTransform: "uppercase",
             }}
           >
-            Degree Collapse
-          </span>
+            DEGREE COLLAPSE
+          </div>
         </div>
         <div
           style={{
-            fontSize: "80px",
-            fontWeight: 700,
-            lineHeight: 1.05,
-            color: "#111",
-            maxWidth: "900px",
-            letterSpacing: "-0.02em",
+            display: "flex",
+            flexDirection: "column",
           }}
         >
-          Is your school
+          <div
+            style={{
+              display: "flex",
+              fontSize: "80px",
+              fontWeight: 700,
+              lineHeight: 1.05,
+              color: "#111",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            {`Is your school`}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              fontSize: "80px",
+              fontWeight: 700,
+              lineHeight: 1.05,
+              color: "#111",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            {`worth it in ${year}?`}
+          </div>
         </div>
         <div
           style={{
-            fontSize: "80px",
-            fontWeight: 700,
-            lineHeight: 1.05,
-            color: "#111",
-            maxWidth: "900px",
-            letterSpacing: "-0.02em",
-          }}
-        >
-          worth it in {year}?
-        </div>
-        <div
-          style={{
+            display: "flex",
             fontSize: "22px",
             color: "#888",
             marginTop: "32px",
