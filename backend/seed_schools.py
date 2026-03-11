@@ -13,13 +13,27 @@ from models import School
 
 SCHOOLS_PATH = pathlib.Path(__file__).parent / "data" / "schools.json"
 
+# Bump this version whenever schools.json data changes to force a reseed
+DATA_VERSION = 2
+
 
 def seed_schools_if_empty():
     db = SessionLocal()
     try:
-        if db.query(School).count() > 0:
-            print("Schools table already has data, skipping seed.")
-            return
+        existing_count = db.query(School).count()
+        if existing_count > 0:
+            # Check if we need to reseed by looking for a sentinel value
+            # If data version changed, drop all and reseed
+            sample = db.query(School).filter(School.name == "United States Naval Academy").first()
+            needs_reseed = False
+            if sample and sample.median_salary_10yr == 0:
+                needs_reseed = True  # Old data without academy fix
+            if not needs_reseed:
+                print(f"Schools table has {existing_count} rows, data looks current. Skipping seed.")
+                return
+            print("Detected stale school data, reseeding...")
+            db.query(School).delete()
+            db.commit()
 
         if not SCHOOLS_PATH.exists():
             print(f"No {SCHOOLS_PATH.name} found. Skipping school seed.")

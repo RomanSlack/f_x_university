@@ -130,7 +130,7 @@ export default function SchoolRankingTable() {
           <div>
             <span className="font-medium">AI Program:</span>{" "}
             {school.has_ai_program ? "Yes" : "No"}
-            {school.research_tier > 0 && ` - R${school.research_tier === 3 ? "1" : school.research_tier === 2 ? "2" : ""} Research`}
+            {school.research_tier >= 2 && ` - R${school.research_tier === 3 ? "1" : "2"} Research`}
           </div>
         </div>
         {school.source_notes && (
