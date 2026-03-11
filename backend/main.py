@@ -8,9 +8,11 @@ from sqlalchemy.orm import Session
 from sqlalchemy import asc, desc
 
 from database import engine, get_db, Base
-from models import Major
+from models import Major, School
 from scoring import compute_risk_score, risk_label, risk_color
+from school_scoring import compute_school_score, school_label, school_color
 from seed import seed_if_empty
+from seed_schools import seed_schools_if_empty
 
 app = FastAPI(title="Degree Collapse Dashboard API")
 
@@ -46,6 +48,7 @@ def cache_set(key: str, data: object):
 def startup():
     Base.metadata.create_all(bind=engine)
     seed_if_empty()
+    seed_schools_if_empty()
     # Warm cache at startup - preload baseline and AGI (2.0x) data
     db = next(get_db())
     try:
@@ -53,6 +56,10 @@ def startup():
             _warm_majors(db, s)
             _warm_stats(db, s)
             _warm_categories(db)
+            _warm_schools(db, s)
+            _warm_school_stats(db, s)
+            _warm_school_categories(db)
+            _warm_school_states(db)
     finally:
         db.close()
 
@@ -82,6 +89,40 @@ def _warm_stats(db: Session, singularity: float):
 def _warm_categories(db: Session):
     rows = db.query(Major.category).distinct().order_by(Major.category).all()
     cache_set("categories", [r[0] for r in rows])
+
+
+def _warm_schools(db: Session, singularity: float):
+    all_schools = [enrich_school(s, singularity) for s in db.query(School).all()]
+    cache_set(f"schools:all:{singularity}", all_schools)
+
+
+def _warm_school_stats(db: Session, singularity: float):
+    all_schools = cache_get(f"schools:all:{singularity}")
+    if not all_schools:
+        all_schools = [enrich_school(s, singularity) for s in db.query(School).all()]
+    if not all_schools:
+        return
+    sorted_schools = sorted(all_schools, key=lambda s: s["school_score"], reverse=True)
+    avg_score = round(sum(s["school_score"] for s in sorted_schools) / len(sorted_schools), 1)
+    top_rated = sum(1 for s in sorted_schools if s["school_score"] >= 70)
+    stats = {
+        "total_schools": len(sorted_schools),
+        "average_score": avg_score,
+        "top_rated_count": top_rated,
+        "best_5": sorted_schools[:5],
+        "worst_5": sorted_schools[-5:][::-1],
+    }
+    cache_set(f"school_stats:{singularity}", stats)
+
+
+def _warm_school_categories(db: Session):
+    rows = db.query(School.category).distinct().order_by(School.category).all()
+    cache_set("school_categories", [r[0] for r in rows])
+
+
+def _warm_school_states(db: Session):
+    rows = db.query(School.state).distinct().order_by(School.state).all()
+    cache_set("school_states", [r[0] for r in rows])
 
 
 # CDN cache header - tells Fly edge + browsers to cache responses
@@ -366,4 +407,223 @@ def get_trends(response: Response, singularity: float = Query(1.0)):
         "note": "CS/Software/IT aggregate. Historical data from BLS. Projections extrapolated from 2022-2025 trend line. AGI scenario assumes 2x acceleration of current displacement rate.",
     }
     cache_set(cache_key, result)
+    return result
+
+
+# ---------------------------------------------------------------------------
+# SCHOOL ENDPOINTS
+# ---------------------------------------------------------------------------
+
+import json as _json
+
+
+def enrich_school(school: School, singularity: float = 1.0) -> dict:
+    """Add computed worth-it score fields. Singularity amplifies automation impact."""
+    effective_automation = school.weighted_major_automation
+    effective_salary_premium = school.alumni_salary_premium
+
+    if singularity > 1.0:
+        # In AGI scenario, automation risk of majors gets worse
+        effective_automation = min(school.weighted_major_automation * singularity, 100.0)
+        # Network premium erodes slightly (knowledge commoditized)
+        effective_salary_premium = school.alumni_salary_premium * max(1.0 - (singularity - 1.0) * 0.1, 0.5)
+
+    score, breakdown = compute_school_score(
+        avg_debt=school.avg_debt,
+        median_salary_10yr=school.median_salary_10yr,
+        pct_stem=school.pct_stem,
+        has_ai_program=school.has_ai_program,
+        research_tier=school.research_tier,
+        alumni_salary_premium=effective_salary_premium,
+        startup_density=school.startup_density,
+        weighted_major_automation=effective_automation,
+    )
+
+    popular_majors = None
+    if school.popular_majors_json:
+        try:
+            popular_majors = _json.loads(school.popular_majors_json)
+        except Exception:
+            pass
+
+    return {
+        "id": school.id,
+        "slug": school.slug,
+        "name": school.name,
+        "ipeds_id": school.ipeds_id,
+        "category": school.category,
+        "state": school.state,
+        "city": school.city,
+        "control": school.control,
+        "enrollment": school.enrollment,
+        "avg_debt": school.avg_debt,
+        "median_salary_10yr": school.median_salary_10yr,
+        "median_salary_4yr": school.median_salary_4yr,
+        "graduation_rate": round(school.graduation_rate, 3),
+        "in_state_tuition": school.in_state_tuition,
+        "out_state_tuition": school.out_state_tuition,
+        "admission_rate": round(school.admission_rate, 3) if school.admission_rate is not None else None,
+        "pct_stem": round(school.pct_stem, 3),
+        "has_ai_program": school.has_ai_program,
+        "research_tier": school.research_tier,
+        "alumni_salary_premium": round(effective_salary_premium, 3),
+        "startup_density": school.startup_density,
+        "weighted_major_automation": round(effective_automation, 1),
+        "popular_majors": popular_majors,
+        "school_score": score,
+        "school_label": school_label(score),
+        "school_color": school_color(score),
+        "score_breakdown": breakdown,
+        "source_notes": school.source_notes,
+        "updated_at": school.updated_at.isoformat() if school.updated_at else None,
+    }
+
+
+SCHOOL_SORT_FIELDS = {
+    "school_score": None,
+    "name": School.name,
+    "avg_debt": School.avg_debt,
+    "median_salary_10yr": School.median_salary_10yr,
+    "graduation_rate": School.graduation_rate,
+    "pct_stem": School.pct_stem,
+    "enrollment": School.enrollment,
+    "admission_rate": School.admission_rate,
+    "in_state_tuition": School.in_state_tuition,
+}
+
+
+@app.get("/api/schools")
+def get_schools(
+    response: Response,
+    sort: str = Query("school_score"),
+    order: str = Query("desc"),
+    category: Optional[str] = Query(None),
+    state: Optional[str] = Query(None),
+    q: Optional[str] = Query(None),
+    singularity: float = Query(1.0),
+    db: Session = Depends(get_db),
+):
+    response.headers["Cache-Control"] = CACHE_HEADER
+
+    cache_key = f"schools:all:{singularity}"
+    if not category and not state and not q:
+        cached = cache_get(cache_key)
+        if cached:
+            response.headers["X-Cache"] = "HIT"
+            results = list(cached)
+            if sort == "school_score" or sort not in SCHOOL_SORT_FIELDS:
+                results.sort(key=lambda s: s.get("school_score", 0), reverse=(order == "desc"))
+            else:
+                reverse = order == "desc"
+                results.sort(key=lambda s: (s.get(sort) or 0), reverse=reverse)
+            return results
+
+    response.headers["X-Cache"] = "MISS"
+
+    query = db.query(School)
+    if category:
+        query = query.filter(School.category == category)
+    if state:
+        query = query.filter(School.state == state)
+    if q:
+        query = query.filter(School.name.ilike(f"%{q}%"))
+
+    results = [enrich_school(s, singularity) for s in query.all()]
+
+    if sort in SCHOOL_SORT_FIELDS and SCHOOL_SORT_FIELDS[sort] is not None:
+        results.sort(key=lambda s: (s.get(sort) or 0), reverse=(order == "desc"))
+    else:
+        results.sort(key=lambda s: s.get("school_score", 0), reverse=(order == "desc"))
+
+    if not category and not state and not q:
+        cache_set(cache_key, results)
+
+    return results
+
+
+@app.get("/api/schools/{slug}")
+def get_school(
+    slug: str,
+    response: Response,
+    singularity: float = Query(1.0),
+    db: Session = Depends(get_db),
+):
+    response.headers["Cache-Control"] = CACHE_HEADER
+
+    cached = cache_get(f"schools:all:{singularity}")
+    if cached:
+        for s in cached:
+            if s["slug"] == slug:
+                response.headers["X-Cache"] = "HIT"
+                return s
+
+    response.headers["X-Cache"] = "MISS"
+    school = db.query(School).filter(School.slug == slug).first()
+    if not school:
+        return {"error": "School not found"}
+    return enrich_school(school, singularity)
+
+
+@app.get("/api/school-stats")
+def get_school_stats(
+    response: Response,
+    singularity: float = Query(1.0),
+    db: Session = Depends(get_db),
+):
+    response.headers["Cache-Control"] = CACHE_HEADER
+
+    cached = cache_get(f"school_stats:{singularity}")
+    if cached:
+        response.headers["X-Cache"] = "HIT"
+        return cached
+
+    response.headers["X-Cache"] = "MISS"
+    all_schools = [enrich_school(s, singularity) for s in db.query(School).all()]
+    if not all_schools:
+        return {"total_schools": 0}
+
+    all_schools.sort(key=lambda s: s["school_score"], reverse=True)
+    avg_score = round(sum(s["school_score"] for s in all_schools) / len(all_schools), 1)
+    top_rated = sum(1 for s in all_schools if s["school_score"] >= 70)
+
+    result = {
+        "total_schools": len(all_schools),
+        "average_score": avg_score,
+        "top_rated_count": top_rated,
+        "best_5": all_schools[:5],
+        "worst_5": all_schools[-5:][::-1],
+    }
+    cache_set(f"school_stats:{singularity}", result)
+    return result
+
+
+@app.get("/api/school-categories")
+def get_school_categories(response: Response, db: Session = Depends(get_db)):
+    response.headers["Cache-Control"] = CACHE_HEADER
+
+    cached = cache_get("school_categories")
+    if cached:
+        response.headers["X-Cache"] = "HIT"
+        return cached
+
+    response.headers["X-Cache"] = "MISS"
+    rows = db.query(School.category).distinct().order_by(School.category).all()
+    result = [r[0] for r in rows]
+    cache_set("school_categories", result)
+    return result
+
+
+@app.get("/api/school-states")
+def get_school_states(response: Response, db: Session = Depends(get_db)):
+    response.headers["Cache-Control"] = CACHE_HEADER
+
+    cached = cache_get("school_states")
+    if cached:
+        response.headers["X-Cache"] = "HIT"
+        return cached
+
+    response.headers["X-Cache"] = "MISS"
+    rows = db.query(School.state).distinct().order_by(School.state).all()
+    result = [r[0] for r in rows]
+    cache_set("school_states", result)
     return result

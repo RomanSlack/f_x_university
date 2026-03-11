@@ -5,11 +5,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY scoring.py .
-COPY database.py .
-COPY models.py .
-COPY seed.py .
-COPY main.py .
+COPY *.py .
 COPY data/ ./data/
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

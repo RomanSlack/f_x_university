@@ -1,0 +1,778 @@
+[
+  {
+    "ipeds_id": "166683",
+    "name": "Massachusetts Institute of Technology",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 18.0,
+    "category_override": "Elite Research"
+  },
+  {
+    "ipeds_id": "243744",
+    "name": "Stanford University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 20.0,
+    "category_override": "Elite Research"
+  },
+  {
+    "ipeds_id": "166027",
+    "name": "Harvard University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 12.0,
+    "category_override": "Ivy League"
+  },
+  {
+    "ipeds_id": "130794",
+    "name": "Yale University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 6.0,
+    "category_override": "Ivy League"
+  },
+  {
+    "ipeds_id": "215062",
+    "name": "University of Pennsylvania",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 9.0,
+    "category_override": "Ivy League"
+  },
+  {
+    "ipeds_id": "186131",
+    "name": "Princeton University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 5.5,
+    "category_override": "Ivy League"
+  },
+  {
+    "ipeds_id": "190150",
+    "name": "Columbia University in the City of New York",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 10.0,
+    "category_override": "Ivy League"
+  },
+  {
+    "ipeds_id": "217156",
+    "name": "Brown University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 5.0,
+    "category_override": "Ivy League"
+  },
+  {
+    "ipeds_id": "182670",
+    "name": "Dartmouth College",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 5.5,
+    "category_override": "Ivy League"
+  },
+  {
+    "ipeds_id": "190415",
+    "name": "Cornell University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 7.0,
+    "category_override": "Ivy League"
+  },
+  {
+    "ipeds_id": "110635",
+    "name": "California Institute of Technology",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 12.0,
+    "category_override": "Tech Institute"
+  },
+  {
+    "ipeds_id": "211440",
+    "name": "Carnegie Mellon University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 10.0,
+    "category_override": "Tech Institute"
+  },
+  {
+    "ipeds_id": "139755",
+    "name": "Georgia Institute of Technology",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 6.0,
+    "category_override": "Tech Institute"
+  },
+  {
+    "ipeds_id": "110662",
+    "name": "University of California-Berkeley",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 9.0,
+    "category_override": "Elite Public"
+  },
+  {
+    "ipeds_id": "110404",
+    "name": "University of California-Los Angeles",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 6.0,
+    "category_override": "Elite Public"
+  },
+  {
+    "ipeds_id": "170976",
+    "name": "University of Michigan-Ann Arbor",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 5.0,
+    "category_override": "Elite Public"
+  },
+  {
+    "ipeds_id": "234076",
+    "name": "University of Virginia-Main Campus",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.5,
+    "category_override": "Elite Public"
+  },
+  {
+    "ipeds_id": "199120",
+    "name": "University of North Carolina at Chapel Hill",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.5,
+    "category_override": "Elite Public"
+  },
+  {
+    "ipeds_id": "228778",
+    "name": "The University of Texas at Austin",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 5.0,
+    "category_override": "Elite Public"
+  },
+  {
+    "ipeds_id": "236948",
+    "name": "University of Washington-Seattle Campus",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 5.5,
+    "category_override": "Elite Public"
+  },
+  {
+    "ipeds_id": "145637",
+    "name": "University of Illinois Urbana-Champaign",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 4.5,
+    "category_override": "Elite Public"
+  },
+  {
+    "ipeds_id": "198136",
+    "name": "Duke University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 6.5,
+    "category_override": "Elite Research"
+  },
+  {
+    "ipeds_id": "147767",
+    "name": "Northwestern University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 6.0,
+    "category_override": "Elite Research"
+  },
+  {
+    "ipeds_id": "179159",
+    "name": "Washington University in St Louis",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.5,
+    "category_override": "Elite Research"
+  },
+  {
+    "ipeds_id": "227757",
+    "name": "Rice University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 5.0,
+    "category_override": "Elite Research"
+  },
+  {
+    "ipeds_id": "221999",
+    "name": "Vanderbilt University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.0,
+    "category_override": "Elite Research"
+  },
+  {
+    "ipeds_id": "140164",
+    "name": "Emory University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.5,
+    "category_override": "Elite Research"
+  },
+  {
+    "ipeds_id": "123961",
+    "name": "University of Southern California",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 6.5,
+    "category_override": "Elite Research"
+  },
+  {
+    "ipeds_id": "193900",
+    "name": "New York University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 7.0,
+    "category_override": "Elite Research"
+  },
+  {
+    "ipeds_id": "164988",
+    "name": "Boston University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "167358",
+    "name": "Northeastern University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "194824",
+    "name": "Rensselaer Polytechnic Institute",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 4.0,
+    "category_override": "Tech Institute"
+  },
+  {
+    "ipeds_id": "186867",
+    "name": "Stevens Institute of Technology",
+    "has_ai_program": true,
+    "research_tier": 2,
+    "startup_density": 3.0,
+    "category_override": "Tech Institute"
+  },
+  {
+    "ipeds_id": "212054",
+    "name": "Drexel University",
+    "has_ai_program": true,
+    "research_tier": 2,
+    "startup_density": 2.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "153658",
+    "name": "Purdue University-Main Campus",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.5,
+    "category_override": "Elite Public"
+  },
+  {
+    "ipeds_id": "240444",
+    "name": "University of Wisconsin-Madison",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.5,
+    "category_override": "Elite Public"
+  },
+  {
+    "ipeds_id": "214777",
+    "name": "Pennsylvania State University-Main Campus",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "204796",
+    "name": "Ohio State University-Main Campus",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "134130",
+    "name": "University of Florida",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "139959",
+    "name": "University of Georgia",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "228723",
+    "name": "Texas A&M University-College Station",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "199193",
+    "name": "North Carolina State University at Raleigh",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "233921",
+    "name": "Virginia Polytechnic Institute and State University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "152080",
+    "name": "University of Notre Dame",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.0,
+    "category_override": "Elite Research"
+  },
+  {
+    "ipeds_id": "131496",
+    "name": "Georgetown University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 4.0,
+    "category_override": "Elite Research"
+  },
+  {
+    "ipeds_id": "168148",
+    "name": "Tufts University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.5,
+    "category_override": "Elite Research"
+  },
+  {
+    "ipeds_id": "198419",
+    "name": "Wake Forest University",
+    "has_ai_program": false,
+    "research_tier": 3,
+    "startup_density": 1.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "212106",
+    "name": "Lehigh University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "201885",
+    "name": "Case Western Reserve University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "160755",
+    "name": "Tulane University of Louisiana",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "135726",
+    "name": "University of Miami",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "104151",
+    "name": "Arizona State University-Tempe",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "126614",
+    "name": "University of Colorado Boulder",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "209551",
+    "name": "University of Oregon",
+    "has_ai_program": false,
+    "research_tier": 3,
+    "startup_density": 1.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "236939",
+    "name": "Washington State University",
+    "has_ai_program": false,
+    "research_tier": 3,
+    "startup_density": 1.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "153603",
+    "name": "Iowa State University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 1.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "155317",
+    "name": "University of Kansas",
+    "has_ai_program": false,
+    "research_tier": 3,
+    "startup_density": 1.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "178396",
+    "name": "University of Missouri-Columbia",
+    "has_ai_program": false,
+    "research_tier": 3,
+    "startup_density": 1.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "151351",
+    "name": "Indiana University-Bloomington",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "174066",
+    "name": "University of Minnesota-Twin Cities",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "163286",
+    "name": "University of Maryland-College Park",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "186380",
+    "name": "Rutgers University-New Brunswick",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "236595",
+    "name": "Williams College",
+    "has_ai_program": false,
+    "research_tier": 0,
+    "startup_density": 1.5,
+    "category_override": "Elite Liberal Arts"
+  },
+  {
+    "ipeds_id": "164465",
+    "name": "Amherst College",
+    "has_ai_program": false,
+    "research_tier": 0,
+    "startup_density": 1.5,
+    "category_override": "Elite Liberal Arts"
+  },
+  {
+    "ipeds_id": "214625",
+    "name": "Swarthmore College",
+    "has_ai_program": false,
+    "research_tier": 0,
+    "startup_density": 2.0,
+    "category_override": "Elite Liberal Arts"
+  },
+  {
+    "ipeds_id": "119173",
+    "name": "Pomona College",
+    "has_ai_program": false,
+    "research_tier": 0,
+    "startup_density": 2.0,
+    "category_override": "Elite Liberal Arts"
+  },
+  {
+    "ipeds_id": "168218",
+    "name": "Wellesley College",
+    "has_ai_program": false,
+    "research_tier": 0,
+    "startup_density": 1.5,
+    "category_override": "Elite Liberal Arts"
+  },
+  {
+    "ipeds_id": "161004",
+    "name": "Bowdoin College",
+    "has_ai_program": false,
+    "research_tier": 0,
+    "startup_density": 1.0,
+    "category_override": "Elite Liberal Arts"
+  },
+  {
+    "ipeds_id": "230764",
+    "name": "Middlebury College",
+    "has_ai_program": false,
+    "research_tier": 0,
+    "startup_density": 1.0,
+    "category_override": "Elite Liberal Arts"
+  },
+  {
+    "ipeds_id": "115409",
+    "name": "Harvey Mudd College",
+    "has_ai_program": true,
+    "research_tier": 1,
+    "startup_density": 4.0,
+    "category_override": "Tech Institute"
+  },
+  {
+    "ipeds_id": "152530",
+    "name": "Rose-Hulman Institute of Technology",
+    "has_ai_program": false,
+    "research_tier": 1,
+    "startup_density": 2.0,
+    "category_override": "Tech Institute"
+  },
+  {
+    "ipeds_id": "167987",
+    "name": "Olin College of Engineering",
+    "has_ai_program": true,
+    "research_tier": 1,
+    "startup_density": 5.0,
+    "category_override": "Tech Institute"
+  },
+  {
+    "ipeds_id": "168421",
+    "name": "Worcester Polytechnic Institute",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.5,
+    "category_override": "Tech Institute"
+  },
+  {
+    "ipeds_id": "195003",
+    "name": "Rochester Institute of Technology",
+    "has_ai_program": true,
+    "research_tier": 2,
+    "startup_density": 2.0,
+    "category_override": "Tech Institute"
+  },
+  {
+    "ipeds_id": "110653",
+    "name": "University of California-San Diego",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 5.0,
+    "category_override": "Elite Public"
+  },
+  {
+    "ipeds_id": "110671",
+    "name": "University of California-Santa Barbara",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.5,
+    "category_override": "Elite Public"
+  },
+  {
+    "ipeds_id": "110644",
+    "name": "University of California-Davis",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.0,
+    "category_override": "Elite Public"
+  },
+  {
+    "ipeds_id": "110680",
+    "name": "University of California-Irvine",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "147703",
+    "name": "University of Chicago",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 6.0,
+    "category_override": "Elite Research"
+  },
+  {
+    "ipeds_id": "162928",
+    "name": "Johns Hopkins University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 4.5,
+    "category_override": "Elite Research"
+  },
+  {
+    "ipeds_id": "195030",
+    "name": "University of Rochester",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "150136",
+    "name": "University of Iowa",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 1.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "204857",
+    "name": "University of Cincinnati-Main Campus",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 1.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "196088",
+    "name": "Stony Brook University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "110714",
+    "name": "University of California-Santa Cruz",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "230038",
+    "name": "University of Utah",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 3.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "215293",
+    "name": "University of Pittsburgh-Pittsburgh Campus",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "131469",
+    "name": "George Washington University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "100751",
+    "name": "The University of Alabama",
+    "has_ai_program": false,
+    "research_tier": 3,
+    "startup_density": 1.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "218663",
+    "name": "University of South Carolina-Columbia",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 1.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "228459",
+    "name": "Southern Methodist University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "171100",
+    "name": "Michigan State University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "130943",
+    "name": "University of Connecticut",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 1.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "164924",
+    "name": "Brandeis University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "216339",
+    "name": "Temple University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 1.5,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "232557",
+    "name": "Virginia Commonwealth University",
+    "has_ai_program": false,
+    "research_tier": 3,
+    "startup_density": 1.0,
+    "category_override": "Research University"
+  },
+  {
+    "ipeds_id": "196413",
+    "name": "Syracuse University",
+    "has_ai_program": true,
+    "research_tier": 3,
+    "startup_density": 2.0,
+    "category_override": "Research University"
+  }
+]

@@ -73,6 +73,18 @@ export default function Navbar() {
             {/* Desktop links */}
             <span className="w-px h-4 bg-[var(--border)] hidden md:block" />
             <Link
+              href="/"
+              className="text-[10px] uppercase tracking-widest text-[var(--muted)] hover:text-[var(--foreground)] transition-colors hidden md:block"
+            >
+              Majors
+            </Link>
+            <Link
+              href="/schools"
+              className="text-[10px] uppercase tracking-widest text-[var(--muted)] hover:text-[var(--foreground)] transition-colors hidden md:block"
+            >
+              Schools
+            </Link>
+            <Link
               href="/methodology"
               className="text-[10px] uppercase tracking-widest text-[var(--muted)] hover:text-[var(--foreground)] transition-colors hidden md:block"
             >
@@ -102,6 +114,20 @@ export default function Navbar() {
         {/* Mobile menu */}
         {menuOpen && (
           <div className="md:hidden border-t border-[var(--border)] bg-white/95 backdrop-blur-sm px-6 py-4 space-y-3">
+            <Link
+              href="/"
+              onClick={() => setMenuOpen(false)}
+              className="block text-xs uppercase tracking-widest text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+            >
+              Major Rankings
+            </Link>
+            <Link
+              href="/schools"
+              onClick={() => setMenuOpen(false)}
+              className="block text-xs uppercase tracking-widest text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+            >
+              School Rankings
+            </Link>
             <Link
               href="/methodology"
               onClick={() => setMenuOpen(false)}

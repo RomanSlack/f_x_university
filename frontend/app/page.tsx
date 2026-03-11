@@ -23,11 +23,17 @@ export default function Home() {
             Is your degree<br />worth it in {year}?
           </h1>
           <p className="mt-4 text-lg text-[var(--muted)] max-w-xl">
-            Every major scored 0–100 on unemployment, AI automation risk, debt
+            Every major scored 0-100 on unemployment, AI automation risk, debt
             load, salary, and the rate of AI-driven job displacement since
-            ChatGPT launched. Defaults to AGI-adjusted projections  - toggle
+            ChatGPT launched. Defaults to AGI-adjusted projections - toggle
             in the nav to see baseline.
           </p>
+          <Link
+            href="/schools"
+            className="inline-block mt-4 text-xs uppercase tracking-widest text-[var(--muted)] hover:text-[var(--foreground)] transition-colors border-b border-[var(--border)] pb-0.5"
+          >
+            Or rank by school instead →
+          </Link>
           <HeroStats />
         </section>
 

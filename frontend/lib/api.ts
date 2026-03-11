@@ -100,3 +100,88 @@ export async function fetchTrends(singularity?: number): Promise<TrendsData> {
   const res = await fetch(`${API_URL}/api/trends${params}`);
   return res.json();
 }
+
+// ---------------------------------------------------------------------------
+// SCHOOLS
+// ---------------------------------------------------------------------------
+
+export interface SchoolData {
+  id: number;
+  slug: string;
+  name: string;
+  ipeds_id: string;
+  category: string;
+  state: string;
+  city: string;
+  control: string;
+  enrollment: number;
+  avg_debt: number;
+  median_salary_10yr: number;
+  median_salary_4yr: number;
+  graduation_rate: number;
+  in_state_tuition: number;
+  out_state_tuition: number;
+  admission_rate: number | null;
+  pct_stem: number;
+  has_ai_program: boolean;
+  research_tier: number;
+  alumni_salary_premium: number;
+  startup_density: number;
+  weighted_major_automation: number;
+  popular_majors: { cip: string; name: string; pct: number }[] | null;
+  school_score: number;
+  school_label: string;
+  school_color: string;
+  score_breakdown: {
+    debt_salary: number;
+    ai_readiness: number;
+    network: number;
+    employability: number;
+  };
+  source_notes: string | null;
+  updated_at: string | null;
+}
+
+export interface SchoolStatsData {
+  total_schools: number;
+  average_score: number;
+  top_rated_count: number;
+  best_5: SchoolData[];
+  worst_5: SchoolData[];
+}
+
+export async function fetchSchools(params?: {
+  sort?: string;
+  order?: string;
+  category?: string;
+  state?: string;
+  q?: string;
+  singularity?: number;
+}): Promise<SchoolData[]> {
+  const searchParams = new URLSearchParams();
+  if (params?.sort) searchParams.set("sort", params.sort);
+  if (params?.order) searchParams.set("order", params.order);
+  if (params?.category) searchParams.set("category", params.category);
+  if (params?.state) searchParams.set("state", params.state);
+  if (params?.q) searchParams.set("q", params.q);
+  if (params?.singularity) searchParams.set("singularity", String(params.singularity));
+
+  const res = await fetch(`${API_URL}/api/schools?${searchParams.toString()}`);
+  return res.json();
+}
+
+export async function fetchSchoolStats(singularity?: number): Promise<SchoolStatsData> {
+  const params = singularity ? `?singularity=${singularity}` : "";
+  const res = await fetch(`${API_URL}/api/school-stats${params}`);
+  return res.json();
+}
+
+export async function fetchSchoolCategories(): Promise<string[]> {
+  const res = await fetch(`${API_URL}/api/school-categories`);
+  return res.json();
+}
+
+export async function fetchSchoolStates(): Promise<string[]> {
+  const res = await fetch(`${API_URL}/api/school-states`);
+  return res.json();
+}
