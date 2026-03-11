@@ -42,6 +42,14 @@ export default function SchoolRankingTable() {
     });
   }, [multiplier]);
 
+  // Global rank map: slug -> rank (always by school_score desc, regardless of filters)
+  const globalRankMap = useMemo(() => {
+    const sorted = [...schools].sort((a, b) => b.school_score - a.school_score);
+    const map = new Map<string, number>();
+    sorted.forEach((s, i) => map.set(s.slug, i + 1));
+    return map;
+  }, [schools]);
+
   const filtered = useMemo(() => {
     let result = [...schools];
     if (activeCategory) {
@@ -198,10 +206,10 @@ export default function SchoolRankingTable() {
             {filtered.map((s, i) => (
               <Fragment key={s.slug}>
                 <tr
-                  className={`border-b border-[var(--border)] hover:bg-[var(--card)] transition-colors cursor-pointer ${i === 0 ? "sticky top-[37px] bg-white z-[5] shadow-[0_1px_0_var(--border)]" : ""}`}
+                  className={`border-b border-[var(--border)] hover:bg-[var(--card)] transition-colors cursor-pointer ${i === 0 ? "sticky top-[41px] bg-white z-[5] shadow-[0_1px_0_var(--border)]" : ""}`}
                   onClick={() => setExpandedSlug(expandedSlug === s.slug ? null : s.slug)}
                 >
-                  <td className="px-4 py-3 text-[var(--muted)] text-sm tabular-nums">{i + 1}</td>
+                  <td className="px-4 py-3 text-[var(--muted)] text-sm tabular-nums">{globalRankMap.get(s.slug) ?? i + 1}</td>
                   <td className="px-4 py-3">
                     <div className="text-sm font-medium">{s.name}</div>
                     <div className="text-[10px] text-[var(--muted)] uppercase tracking-widest">{s.city}, {s.state} - {s.category}</div>
@@ -241,7 +249,7 @@ export default function SchoolRankingTable() {
           >
             <div className="flex justify-between items-start mb-2">
               <div>
-                <span className="text-[var(--muted)] text-xs tabular-nums mr-2">{i + 1}</span>
+                <span className="text-[var(--muted)] text-xs tabular-nums mr-2">{globalRankMap.get(s.slug) ?? i + 1}</span>
                 <span className="text-sm font-medium">{s.name}</span>
                 <div className="text-[10px] text-[var(--muted)] uppercase tracking-widest mt-0.5">{s.city}, {s.state}</div>
               </div>

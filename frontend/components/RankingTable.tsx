@@ -34,6 +34,14 @@ export default function RankingTable() {
     });
   }, [multiplier]);
 
+  // Global rank map: slug -> rank (always by risk_score desc, regardless of filters)
+  const globalRankMap = useMemo(() => {
+    const sorted = [...majors].sort((a, b) => b.risk_score - a.risk_score);
+    const map = new Map<string, number>();
+    sorted.forEach((m, i) => map.set(m.slug, i + 1));
+    return map;
+  }, [majors]);
+
   const filtered = useMemo(() => {
     let result = [...majors];
     if (activeCategory) {
@@ -156,10 +164,10 @@ export default function RankingTable() {
             {filtered.map((m, i) => (
               <Fragment key={m.slug}>
                 <tr
-                  className={`border-b border-[var(--border)] hover:bg-[var(--card)] transition-colors cursor-pointer ${i === 0 ? "sticky top-[37px] bg-white z-[5] shadow-[0_1px_0_var(--border)]" : ""}`}
+                  className={`border-b border-[var(--border)] hover:bg-[var(--card)] transition-colors cursor-pointer ${i === 0 ? "sticky top-[41px] bg-white z-[5] shadow-[0_1px_0_var(--border)]" : ""}`}
                   onClick={() => setExpandedSlug(expandedSlug === m.slug ? null : m.slug)}
                 >
-                  <td className="px-4 py-3 text-[var(--muted)] text-sm tabular-nums">{i + 1}</td>
+                  <td className="px-4 py-3 text-[var(--muted)] text-sm tabular-nums">{globalRankMap.get(m.slug) ?? i + 1}</td>
                   <td className="px-4 py-3">
                     <div className="text-sm font-medium">{m.name}</div>
                     <div className="text-[10px] text-[var(--muted)] uppercase tracking-widest">{m.category}</div>
@@ -198,7 +206,7 @@ export default function RankingTable() {
           >
             <div className="flex justify-between items-start mb-2">
               <div>
-                <span className="text-[var(--muted)] text-xs tabular-nums mr-2">{i + 1}</span>
+                <span className="text-[var(--muted)] text-xs tabular-nums mr-2">{globalRankMap.get(m.slug) ?? i + 1}</span>
                 <span className="text-sm font-medium">{m.name}</span>
                 <div className="text-[10px] text-[var(--muted)] uppercase tracking-widest mt-0.5">{m.category}</div>
               </div>

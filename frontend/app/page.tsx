@@ -8,6 +8,7 @@ import TrendChart from "@/components/TrendChart";
 import RankingTable from "@/components/RankingTable";
 import Calculator from "@/components/Calculator";
 import DebtClock from "@/components/DebtClock";
+import ShareButtons from "@/components/ShareButtons";
 import Link from "next/link";
 
 export default function Home() {
@@ -28,12 +29,16 @@ export default function Home() {
             ChatGPT launched. Defaults to AGI-adjusted projections - toggle
             in the nav to see baseline.
           </p>
-          <Link
-            href="/schools"
-            className="inline-block mt-4 text-xs uppercase tracking-widest text-[var(--muted)] hover:text-[var(--foreground)] transition-colors border-b border-[var(--border)] pb-0.5"
-          >
-            Or rank by school instead →
-          </Link>
+          <div className="mt-6 flex flex-wrap items-center gap-4">
+            <Link
+              href="/schools"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-xs uppercase tracking-widest font-medium border border-[var(--foreground)] text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-white transition-all rounded-full"
+            >
+              Rank by school instead
+              <span className="text-sm">→</span>
+            </Link>
+            <ShareButtons text={`Is your degree worth it in ${year}? Every major scored 0-100 on AI risk, debt, and employability.`} />
+          </div>
           <HeroStats />
         </section>
 

@@ -5,6 +5,8 @@ import { currentYear } from "@/lib/year";
 import Navbar from "@/components/Navbar";
 import SchoolHeroStats from "@/components/SchoolHeroStats";
 import SchoolRankingTable from "@/components/SchoolRankingTable";
+import StateMap from "@/components/StateMap";
+import ShareButtons from "@/components/ShareButtons";
 import Link from "next/link";
 
 export default function SchoolsPage() {
@@ -36,7 +38,21 @@ export default function SchoolsPage() {
             readiness, network premium, and post-AI employability of their
             graduates. Higher is better. AGI mode on by default.
           </p>
+          <div className="mt-6">
+            <ShareButtons text={`Is your school worth it in ${year}? Top 1,000 US universities ranked for the AI age.`} />
+          </div>
           <SchoolHeroStats />
+        </section>
+
+        {/* State Map */}
+        <section className="max-w-5xl mx-auto px-6 py-16 border-t border-[var(--border)]">
+          <h2 className="text-xs uppercase tracking-widest text-[var(--muted)] mb-2">
+            Score by State
+          </h2>
+          <p className="text-sm text-[var(--muted)] mb-6">
+            Average school worth-it score per state. Hover for details.
+          </p>
+          <StateMap />
         </section>
 
         {/* Rankings */}

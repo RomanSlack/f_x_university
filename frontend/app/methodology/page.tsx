@@ -195,6 +195,94 @@ export default function MethodologyPage() {
         </div>
       </section>
 
+      {/* School Scoring */}
+      <section className="mb-16">
+        <h2 className="text-xs uppercase tracking-widest text-[var(--muted)] mb-4">
+          School Worth-It Score
+        </h2>
+        <p className="text-sm leading-relaxed mb-4">
+          Every university receives a score from 0 (worst value) to 100 (best value).
+          Note: this is <span className="font-medium text-[var(--foreground)]">inverted</span> from
+          the major risk score - higher means the school is a better bet. The score
+          is computed from four weighted factors:
+        </p>
+        <div className="bg-[var(--card)] border border-[var(--border)] rounded-lg p-6 font-mono text-sm leading-loose mb-4">
+          <div>school_score = (</div>
+          <div className="ml-4">0.35 x debt_salary_value +</div>
+          <div className="ml-4">0.20 x ai_readiness +</div>
+          <div className="ml-4">0.20 x network_premium +</div>
+          <div className="ml-4">0.25 x post_ai_employability</div>
+          <div>) x 100</div>
+        </div>
+        <div className="space-y-4 text-sm">
+          <div>
+            <span className="font-medium">Debt-to-Salary Value (35%)</span>
+            <span className="text-[var(--muted)]">
+              {" "}- Average debt at graduation divided by median earnings 10 years post-entry.
+              Lower ratio = higher score. Capped at 1.5x ratio. Source: College Scorecard.
+            </span>
+          </div>
+          <div>
+            <span className="font-medium">AI Readiness (20%)</span>
+            <span className="text-[var(--muted)]">
+              {" "}- Composite of: percentage of degrees in STEM fields (30% weight),
+              whether the school has a dedicated AI/ML program (40% weight), and
+              Carnegie research classification R1/R2 (30% weight). Schools with strong
+              AI programs and research output score highest.
+            </span>
+          </div>
+          <div>
+            <span className="font-medium">Network Premium (20%)</span>
+            <span className="text-[var(--muted)]">
+              {" "}- Alumni salary uplift above national median (60% weight) combined with
+              startup density per 1,000 alumni (40% weight). Measures whether the school&apos;s
+              brand and alumni network provide tangible career advantages beyond education.
+            </span>
+          </div>
+          <div>
+            <span className="font-medium">Post-AI Employability (25%)</span>
+            <span className="text-[var(--muted)]">
+              {" "}- Inverse of the weighted average automation risk across the school&apos;s
+              most popular majors. Schools whose graduates cluster in AI-resilient fields
+              score higher. In AGI mode, this factor gets amplified.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* School Data Sources */}
+      <section className="mb-16">
+        <h2 className="text-xs uppercase tracking-widest text-[var(--muted)] mb-4">
+          School Data Sources
+        </h2>
+        <div className="space-y-6 text-sm">
+          <div>
+            <h3 className="font-medium mb-1">Core Financial Data</h3>
+            <ul className="text-[var(--muted)] space-y-1 list-disc list-inside">
+              <li>U.S. Department of Education - College Scorecard API (latest available data)</li>
+              <li>Fields: median debt, median earnings (4yr and 10yr), graduation rate, tuition, enrollment, admission rate, program percentages by CIP code</li>
+              <li>Top 1,000 bachelor&apos;s-granting institutions by enrollment</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-medium mb-1">AI Programs & Research</h3>
+            <ul className="text-[var(--muted)] space-y-1 list-disc list-inside">
+              <li>Carnegie Classification of Institutions of Higher Education (R1/R2 designation)</li>
+              <li>AI/ML program existence manually verified for top ~100 schools</li>
+              <li>STEM percentage computed from CIP codes 11, 14, 15, 26, 27, 40</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-medium mb-1">Network & Startup Data</h3>
+            <ul className="text-[var(--muted)] space-y-1 list-disc list-inside">
+              <li>Alumni salary premium derived from College Scorecard earnings vs national median ($38k baseline)</li>
+              <li>Startup density estimated from PitchBook University Rankings and Crunchbase data for top ~100 schools</li>
+              <li>Remaining schools default to 0.5 startups per 1,000 alumni</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* Limitations */}
       <section className="mb-16">
         <h2 className="text-xs uppercase tracking-widest text-[var(--muted)] mb-4">
@@ -228,7 +316,10 @@ export default function MethodologyPage() {
       <section className="border-t border-[var(--border)] pt-8">
         <div className="flex flex-wrap gap-6 text-xs uppercase tracking-widest">
           <Link href="/" className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">
-            ← Dashboard
+            ← Major Rankings
+          </Link>
+          <Link href="/schools" className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">
+            School Rankings
           </Link>
           <a
             href="https://github.com/RomanSlack/f_x_university"
